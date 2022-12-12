@@ -5,10 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,11 +37,15 @@ fun AppContent() {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp)
+            .padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
 
         item {
             SmartTruncTest()
+        }
+        item {
+            Divider()
         }
 
     }
@@ -60,36 +61,40 @@ fun SmartTruncTest() {
            in culpa qui officia deserunt mollit anim id est laborum.
         
     """.trimIndent()
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+    Column(modifier = Modifier) {
+        Text(text = "SmartTrunc Text", style = MaterialTheme.typography.titleLarge)
+        Spacer(modifier = Modifier.size(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
 
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = text
-            )
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text = text
+                )
+            }
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text = text.smartTruncate(200)
+                )
+            }
+
+
         }
-
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) {
-
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = text.smartTruncate(200)
-            )
-        }
-
-
     }
 }
 
