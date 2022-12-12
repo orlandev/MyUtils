@@ -1,4 +1,4 @@
-package com.orlandev.utils.share.extensions
+package com.orlandev.utils.extensions
 
 fun String.smartTruncate(max: Int = 120, suffix: String = "..."): String = if (this.length < max) {
     this
